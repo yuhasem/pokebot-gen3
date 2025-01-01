@@ -57,11 +57,11 @@ Unlike Emerald version, Ruby and Sapphire are not restricted by the sequence tha
 |          | 🟥 Ruby | 🔷 Sapphire | 🟢 Emerald | 🔥 FireRed | 🌿 LeafGreen |
 |:---------|:-------:|:-----------:|:----------:|:----------:|:------------:|
 | English  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
-| Japanese |    ❌    |      ❌      |     ✅      |     ✅      |      ❌       |
-| German   |    ❌    |      ❌      |     ✅      |     ✅      |      ❌       |
-| Spanish  |    ❌    |      ❌      |     ✅      |     ✅      |      ❌       |
-| French   |    ❌    |      ❌      |     ✅      |     ✅      |      ❌       |
-| Italian  |    ❌    |      ❌      |     ✅      |     ✅      |      ❌       |
+| Japanese |    ✅    |      ❌      |     ✅      |     ✅      |      ✅       |
+| German   |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| Spanish  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| French   |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| Italian  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
 
 ✅ Tested, working
 

@@ -34,13 +34,13 @@ not Shiny.
 ## Game Support
 
 |          | 🟥 Ruby | 🔷 Sapphire | 🟢 Emerald | 🔥 FireRed | 🌿 LeafGreen |
-| :------- | :-----: | :---------: | :--------: | :--------: | :----------: |
-| English  |   ✅    |     ✅      |     ✅     |     ✅     |      ✅      |
-| Japanese |   ❌    |     ❌      |     ✅     |     ✅     |      ❌      |
-| German   |   ❌    |     ❌      |     ✅     |     ✅     |      ✅      |
-| Spanish  |   ❌    |     ❌      |     ✅     |     ✅     |      ✅      |
-| French   |   ❌    |     ❌      |     ✅     |     ✅     |      ✅      |
-| Italian  |   ❌    |     ❌      |     ✅     |     ✅     |      ✅      |
+|:---------|:-------:|:-----------:|:----------:|:----------:|:------------:|
+| English  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| Japanese |    ✅    |      ❌      |     ✅      |     ✅      |      ✅       |
+| German   |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| Spanish  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| French   |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| Italian  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
 
 ✅ Tested, working
 

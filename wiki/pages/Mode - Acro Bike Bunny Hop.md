@@ -10,11 +10,11 @@ Register the Acro Bike and start the mode while in the overworld, in any patch o
 |          | 🟥 Ruby | 🔷 Sapphire | 🟢 Emerald |
 |:---------|:-------:|:-----------:|:----------:|
 | English  |    ✅    |      ✅      |     ✅      |
-| Japanese |    ❌    |      ❌      |     ✅      |
-| German   |    ❌    |      ❌      |     ✅      |
-| Spanish  |    ❌    |      ❌      |     ✅      |
-| French   |    ❌    |      ❌      |     ✅      |
-| Italian  |    ❌    |      ❌      |     ✅      |
+| Japanese |    ✅    |      ❌      |     ✅      |
+| German   |    ✅    |      ✅      |     ✅      |
+| Spanish  |    ✅    |      ✅      |     ✅      |
+| French   |    ✅    |      ✅      |     ✅      |
+| Italian  |    ✅    |      ✅      |     ✅      |
 
 ✅ Tested, working
 

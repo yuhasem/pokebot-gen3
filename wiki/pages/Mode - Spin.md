@@ -30,11 +30,11 @@ if your Safari Ball count drops below `15`.
 |          | 🟥 Ruby | 🔷 Sapphire | 🟢 Emerald | 🔥 FireRed | 🌿 LeafGreen |
 |:---------|:-------:|:-----------:|:----------:|:----------:|:------------:|
 | English  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
-| Japanese |    ❌    |      ❌      |     ✅      |     ✅      |      ❌       |
-| German   |    ❌    |      ❌      |     ✅      |     ✅      |      ✅       |
-| Spanish  |    ❌    |      ❌      |     ✅      |     ✅      |      ✅       |
-| French   |    ❌    |      ❌      |     ✅      |     ✅      |      ✅       |
-| Italian  |    ❌    |      ❌      |     ✅      |     ✅      |      ✅       |
+| Japanese |    ✅    |      ❌      |     ✅      |     ✅      |      ✅       |
+| German   |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| Spanish  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| French   |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
+| Italian  |    ✅    |      ✅      |     ✅      |     ✅      |      ✅       |
 
 ✅ Tested, working
 

@@ -28,11 +28,11 @@ The bot will repeatedly battle and white-out to the Rocket trainer, so any money
 |          | 🔥 Fire Red | 🌿 Leaf Green |
 |:---------|-------------|---------------|
 | English  | ✅           | ✅             |
-| Japanese | ✅           | ❌             |
-| German   | 🚫          | ❌             |
-| Spanish  | 🚫          | ❌             |
-| French   | 🚫          | ❌             |
-| Italian  | 🚫          | ❌             |
+| Japanese | ✅           | ✅             |
+| German   | 🚫          | 🚫            |
+| Spanish  | 🚫          | 🚫            |
+| French   | 🚫          | 🚫            |
+| Italian  | 🚫          | 🚫            |
 
 ✅ Tested, working
 

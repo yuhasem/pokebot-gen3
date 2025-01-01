@@ -141,29 +141,29 @@ Start bot mode anywhere inside the glass workshop.
 
 # Game Support
 
-| Puzzle         | Game         | English | Japanese | German | Spanish | French | Italian |
-|:---------------|:-------------|:-------:|:--------:|:------:|:-------:|:------:|:-------:|
-| **Sky Pillar** | 🟢 Emerald   |   ✅    |    ❌    |   ❌   |   ❌   |   ❌   |   ❌    |
-| **Mirage Tower**| 🟢 Emerald   |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-| **Deoxys**     | 🟥 Ruby      |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🔷 Sapphire  |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🟢 Emerald   |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🔥 Fire Red  |   ✅    |    ✅    |   ✅   |   ✅   |   ✅   |   ✅    |
-|                | 🌿 LeafGreen |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-| **Regice**     | 🟥 Ruby      |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🔷 Sapphire  |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🟢 Emerald   |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-| **Regirock**   | 🟥 Ruby      |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🔷 Sapphire  |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🟢 Emerald   |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-| **Registeel**  | 🟥 Ruby      |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🔷 Sapphire  |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🟢 Emerald   |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-| **Tanoby Key** | 🔥 Fire Red  |   ✅    |    ✅    |   ✅   |   ✅    |   ✅   |   ✅    |
-|                | 🌿 LeafGreen |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-| **White Flute**| 🟥 Ruby      |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🔷 Sapphire  |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
-|                | 🟢 Emerald   |   ✅    |    ❌    |   ❌   |   ❌    |   ❌   |   ❌    |
+| Puzzle           | Game         | English | Japanese | German | Spanish | French | Italian |
+|:-----------------|:-------------|:-------:|:--------:|:------:|:-------:|:------:|:-------:|
+| **Mirage Tower** | 🟢 Emerald   |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+| **Sky Pillar**   | 🟢 Emerald   |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🟥 Ruby      |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🔷 Sapphire  |    ✅    |    ❌     |   ✅    |    ✅    |   ✅    |    ✅    |
+| **Deoxys**       | 🟢 Emerald   |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🔥 Fire Red  |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🌿 LeafGreen |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+| **Regice**       | 🟥 Ruby      |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🔷 Sapphire  |    ✅    |    ❌     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🟢 Emerald   |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+| **Regirock**     | 🟥 Ruby      |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🔷 Sapphire  |    ✅    |    ❌     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🟢 Emerald   |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+| **Registeel**    | 🟥 Ruby      |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🔷 Sapphire  |    ✅    |    ❌     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🟢 Emerald   |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+| **Tanoby Key**   | 🔥 Fire Red  |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🌿 LeafGreen |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+| **White Flute**  | 🟥 Ruby      |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🔷 Sapphire  |    ✅    |    ❌     |   ✅    |    ✅    |   ✅    |    ✅    |
+|                  | 🟢 Emerald   |    ✅    |    ✅     |   ✅    |    ✅    |   ✅    |    ✅    |
 
 ✅ Tested, working
 

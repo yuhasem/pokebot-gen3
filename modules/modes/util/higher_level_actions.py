@@ -9,7 +9,7 @@ from modules.menu_parsers import CursorOptionEmerald, CursorOptionFRLG, CursorOp
 from modules.menuing import PokemonPartyMenuNavigator, StartMenuNavigator
 from modules.modes.util.sleep import wait_for_n_frames
 from modules.player import get_player_avatar, get_player, TileTransitionState, RunningState
-from modules.pokemon import get_party
+from modules.pokemon_party import get_party
 from modules.region_map import FlyDestinationFRLG, FlyDestinationRSE, get_map_cursor, get_map_region
 from modules.tasks import get_task, task_is_active
 from ._util_helper import isolate_inputs
@@ -49,21 +49,13 @@ def fly_to(destination: Union[FlyDestinationRSE, FlyDestinationFRLG]) -> Generat
     if not get_event_flag(destination.get_flag_name()):
         raise BotModeError(f"Player cannot fly to {destination.name} because that location is not yet available.")
 
-    flying_pokemon_index = -1
-    for index in range(len(get_party())):
-        pokemon = get_party()[index]
-        for learned_move in pokemon.moves:
-            if learned_move is not None and learned_move.move.name == "Fly":
-                flying_pokemon_index = index
-                break
-        if flying_pokemon_index > -1:
-            break
-    if flying_pokemon_index == -1:
+    flying_pokemon = get_party().first_pokemon_with_move("Fly")
+    if flying_pokemon is None:
         raise BotModeError("Player does not have any Pokémon that knows Fly in their party.")
 
     # Select field move FLY
     yield from StartMenuNavigator("POKEMON").step()
-    yield from PokemonPartyMenuNavigator(flying_pokemon_index, "", menu_index).step()
+    yield from PokemonPartyMenuNavigator(flying_pokemon.index, "", menu_index).step()
 
     # Wait for region map to load.
     while (
@@ -119,19 +111,28 @@ class TaskFishing(Enum):
 
 
 @debug.track
-def fish() -> Generator:
-    task_fishing = get_task("Task_Fishing")
-    if task_fishing is not None:
-        match task_fishing.data[0]:
-            case TaskFishing.WAIT_FOR_A.value | TaskFishing.END_NO_MON.value:
-                context.emulator.press_button("A")
-            case TaskFishing.NOT_EVEN_NIBBLE.value:
-                context.emulator.press_button("B")
-            case TaskFishing.START_ENCOUNTER.value:
-                context.emulator.press_button("A")
-    else:
-        context.emulator.press_button("Select")
-    yield
+def fish(stop_condition: Callable[[], bool] | None = None, loop: bool = False) -> Generator:
+    """Handles both single fishing actions or continuous fishing loop."""
+
+    while True:
+        if stop_condition is not None and stop_condition():
+            return
+
+        task_fishing = get_task("Task_Fishing")
+        if task_fishing is not None:
+            match task_fishing.data[0]:
+                case TaskFishing.WAIT_FOR_A.value | TaskFishing.END_NO_MON.value:
+                    context.emulator.press_button("A")
+                case TaskFishing.NOT_EVEN_NIBBLE.value:
+                    context.emulator.press_button("B")
+                case TaskFishing.START_ENCOUNTER.value:
+                    context.emulator.press_button("A")
+        else:
+            context.emulator.press_button("Select")
+        yield
+
+        if not loop:
+            break
 
 
 def spin(stop_condition: Callable[[], bool] | None = None, counter_clockwise: bool = False):

@@ -1,6 +1,6 @@
 🏠 [`pokebot-gen3` Wiki Home](../Readme.md)
 
-# 🪨 Rock Smash Mode
+# 🗿 Rock Smash Mode
 
 Rock smash mode will continuously farm Rock Smash encounters in Granite Cave (Nosepass) and Safari Zone (Shuckle).
 
@@ -26,7 +26,7 @@ the level of the first _non-fainted_ Pokémon.)
 
 If you have any Repel items in your inventory, the game will offer you this choice:
 
-![](../images/rock_smash_repel_prompt.png)
+![](../images/repel_prompt.png)
 
 ### Without Repel
 
@@ -68,11 +68,11 @@ The mode will continuously try to enter the Safari Zone, so make sure you have s
 |          | 🟥 Ruby | 🔷 Sapphire | 🟢 Emerald |
 |:---------|:-------:|:-----------:|:----------:|
 | English  |    ✅    |      ✅      |     ✅      |
-| Japanese |    ❌    |      ❌      |     ✅      |
-| German   |    ❌    |      ❌      |     ✅      |
-| Spanish  |    ❌    |      ❌      |     ✅      |
-| French   |    ❌    |      ❌      |     ✅      |
-| Italian  |    ❌    |      ❌      |     ✅      |
+| Japanese |    ✅    |      ❌      |     ✅      |
+| German   |    ✅    |      ✅      |     ✅      |
+| Spanish  |    ✅    |      ✅      |     ✅      |
+| French   |    ✅    |      ✅      |     ✅      |
+| Italian  |    ✅    |      ✅      |     ✅      |
 
 ✅ Tested, working
 

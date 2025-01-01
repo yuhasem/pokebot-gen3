@@ -120,12 +120,6 @@ CB2_RETURNTOFIELD:
   I: 0x80567e8
   J: 0x805609c
   S: 0x80568d0
-CB2_RETURNTOFIELDCONTINUESCRIPTPLAYMAPMUSIC:
-  D: 0x8056800
-  F: 0x80569c0
-  I: 0x80568ec
-  J: 0x80561a0
-  S: 0x80569d4
 gMain:
   D: 0x3003040
   F: 0x3003040
@@ -256,6 +250,12 @@ BattleScript_ForgotAndLearnedNewMove:
   I: 0x81d5eb2
   J: 0x81bca04
   S: 0x81d857a
+HandleEndTurn_FinishBattle:
+  D: 0x8015894
+  F: 0x8015880
+  I: 0x8015894
+  J: 0x8015128
+  S: 0x8015894
 sMoveSelectionCursorPos:
   J: 0x203b0e1
 gMoveSelectionCursor:
@@ -297,6 +297,10 @@ gBattleWeather:
   J: 0x2023e7c
 sTextPrinters:
   J: 0x2020030
+gNumSafariBalls:
+  J: 0x203990c
+gSafariZoneStepCounter:
+  J: 0x203990e
 #--------------------#
 
 #----------------#
@@ -418,12 +422,6 @@ CB2_MAINMENU:
   I: 0x800c254
   J: 0x800bcb4
   S: 0x800c240
-CB2_CONTINUESAVEDGAME:
-  D: 0x8056958
-  F: 0x8056a18
-  I: 0x8056944
-  J: 0x80561f8
-  S: 0x8056a2c
 CB2_RETURNTOFIELDLOCAL:
   D: 0x8056828
   F: 0x80568e8
@@ -595,39 +593,65 @@ BattleScript_CaughtPokemonSkipNewDex:
   D: 0x81ddcfb
   F: 0x81d8237
   I: 0x81d6ecf
-  J: ~
+  J: 0x81bda1f
   S: 0x81d9597
 CB2_NamingScreen:
   D: 0x809fc64
   F: 0x809fd24
   I: 0x809fc44
-  J: ~
+  J: 0x809fa50
   S: 0x809fd2c
 # 0x6
 BattleScript_CaughtPokemonDone:
   D: 0x81ddd19
   F: 0x81d8255
   I: 0x81d6eed
-  J: ~
+  J: 0x81bda3d
   S: 0x81d95b5
 # 0x6
 BattleScript_GotAwaySafely:
   D: 0x81dcbac
   F: 0x81d70e8
   I: 0x81d5d80
-  J: ~
+  J: 0x81bc8d2
   S: 0x81d8448
 Task_NamingScreen:
   D: 0x809de6c
   F: 0x809df2c
   I: 0x809de58
-  J: ~
+  J: 0x809d7c0
   S: 0x809df40
 sNamingScreen:
-  J: ~
+  J: 0x20398d8
 gSprites:
-  J: ~
+  J: 0x20205bc
 #---------------------#
+
+#-----------------#
+#   Safari Mode   #
+#-----------------#
+# 0xa
+FuchsiaCity_SafariZone_Entrance_EventScript_AskEnterSafariZone:
+  D: 0x816d2fd
+  F: 0x816d3b9
+  I: 0x816d33d
+  J: 0x8186a32
+  S: 0x816d429
+# 0x28
+FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone:
+  D: 0x816d336
+  F: 0x816d3f2
+  I: 0x816d376
+  J: 0x8186a6b
+  S: 0x816d462
+# 0x1
+FuchsiaCity_SafariZone_Entrance_EventScript_ExitWarpIn:
+  D: 0x816d268
+  F: 0x816d31a
+  I: 0x816d2a8
+  J: 0x818699d
+  S: 0x816d394
+#-----------------#
 
 # Ununsed symbols that were conflicting with currently used symbols
 # We set them to 0x0 to 'get them out of our way' and correctly target the desired symbol
@@ -670,6 +694,54 @@ CableClub_Text_OtherTrainerNotReady:
 CableClub_Text_NotSetUpForFarAwayRegion:
   J: 0x0
 
+# FR/LG Safari scripts are annoying for Safari Mode
+FuchsiaCity_SafariZone_Entrance_EventScript_ExitEarly:
+  D: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_ReturnToSafariZone:
+  D: 0x0
+  I: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerMid:
+  D: 0x0
+FuchsiaCity_SafariZone_Entrance_Movement_ApproachCounter:
+  D: 0x0
+FuchsiaCity_SafariZone_Entrance_Movement_Exit2:
+  D: 0x0
+FuchsiaCity_SafariZone_Entrance_Movement_ReEnter:
+  D: 0x0
+FuchsiaCity_SafariZone_Entrance_Movement_Exit:
+  D: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerLeft:
+  D: 0x0
+  I: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerRight:
+  D: 0x0
+  F: 0x0
+  I: 0x0
+  S: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_EnterSafariZoneRight:
+  F: 0x0
+  S: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_ForcePlayerBack:
+  S: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_NotEnoughMoney:
+  S: 0x0
+FuchsiaCity_SafariZone_Entrance_Movement_EnterSafariZoneRight:
+  S: 0x0
+FuchsiaCity_SafariZone_Entrance_EventScript_ExplainSafariZone:
+  S: 0x0
+FuchsiaCity_SafariZone_Entrance_Movement_EnterSafariZoneMid:
+  S: 0x0
+FuchsiaCity_SafariZone_Entrance_Movement_ForceBack:
+  S: 0x0
+Route15_Text_RouteSign:
+  J: 0x0
+Route15_Text_YazminDefeat:
+  J: 0x0
+Route15_Text_MyaIntro:
+  J: 0x0
+Route15_Text_MyaDefeat:
+  J: 0x0
+
 # Unused
 Task_ExitNonDoor:
   D: 0x807e230
@@ -701,3 +773,15 @@ TASK_PLAYCRYWHENRELEASEDFROMBALL:
   I: 0x804B07c
   J: 0x804a828
   S: 0x804b164
+CB2_CONTINUESAVEDGAME:
+  D: 0x8056958
+  F: 0x8056a18
+  I: 0x8056944
+  J: 0x80561f8
+  S: 0x8056a2c
+CB2_RETURNTOFIELDCONTINUESCRIPTPLAYMAPMUSIC:
+  D: 0x8056800
+  F: 0x80569c0
+  I: 0x80568ec
+  J: 0x80561a0
+  S: 0x80569d4
