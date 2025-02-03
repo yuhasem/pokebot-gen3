@@ -264,10 +264,10 @@ class TestEffectiveEncounterRatesForCurrentMap(unittest.TestCase):
         party_lead = PartyPokemon(static, 0)
         
         want = [
-            modules.map.EffectiveWildEncounter(electrike, 12, 13, 80/323),
+            modules.map.EffectiveWildEncounter(electrike, 13, 13, 80/323),
             modules.map.EffectiveWildEncounter(minun, 13, 13, 145/323),
-            modules.map.EffectiveWildEncounter(plusle, 12, 13, 53/323),
-            modules.map.EffectiveWildEncounter(gulpin, 12, 13, 15/323),
+            modules.map.EffectiveWildEncounter(plusle, 13, 13, 53/323),
+            modules.map.EffectiveWildEncounter(gulpin, 13, 13, 15/323),
             modules.map.EffectiveWildEncounter(oddish, 13, 13, 30/323),
         ]
         
