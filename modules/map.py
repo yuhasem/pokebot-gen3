@@ -2059,7 +2059,8 @@ def _calculate_repel_rate_and_species_map(
             species_entry.max_level = max(species_entry.max_level, encounter.max_level)
     for encounter in species:
         species[encounter].encounter_rate /= total
-    return repeled / total, species
+    repel_rate = repeled / total if total != 0 else 1
+    return repel_rate, species
 
 
 def calculate_effective_encounters(

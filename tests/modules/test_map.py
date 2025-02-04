@@ -159,6 +159,12 @@ class TestEffectiveEncounterRatesForCurrentMap(unittest.TestCase):
 
         self.assertEffectiveEncountersEqual(got, want)
 
+    def test_empty_encounters(self):
+        party_lead = PartyPokemon(regular_lead, 0)
+        got = modules.map.calculate_effective_encounters([], "rock_smash", party_lead, 0)
+        # Imprtantly, doesn't crash.
+        self.assertEqual(got, [])
+
     # Nosepass for testing repel on level range encounters, and interactions
     # with pressure and intimidate
     def test_nosepass_plain(self):
