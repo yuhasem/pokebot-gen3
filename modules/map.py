@@ -2026,8 +2026,12 @@ def get_encounter_affecting_abilities() -> list[str]:
 def _calculate_repel_rate_and_species_map(
         encounters: list[WildEncounter],
         repel_level: int) -> tuple[float, dict[int, EffectiveWildEncounter]]:
-    """invariant: encounter rate of all given WildEncounter is > 0. Must
-    normalize rates to a ratio in (0.0,1.0]"""
+    """Calcualtes rate of all possibilities for the given encounter list.
+    
+    Returns the rate at which encounters will be repeled in the first return,
+    and a dict from species index to rate in the second return.  The rates for
+    repel and all species given in the return will be in (0.0,1.0].  Further,
+    repel rate and rates for all species will sum to 1."""
     species = {}
     total = 0
     repeled = 0
@@ -2067,70 +2071,6 @@ def calculate_effective_encounters(
     # Start by getting the repel rate and rate for each species for the base
     # encounter table
     base_repel_rate, base_species_rate = _calculate_repel_rate_and_species_map(encounters, repel_level)
-    # Some abilities have a 50% chance of activating.  We treat this as
-    # creating a separate encounter table.  In all cases, the new table is
-    # built for the ability always activating, and the 50% modifier is taken
-    # into account in the final calculation.
-    paths = 1
-    second_repel_rate = 0
-    second_species_rate = {}
-    if (not lead_pokemon.is_egg
-        and lead_pokemon.ability.name in ("Keen Eye", "Intimidate")
-        and encounter_type in ("land", "surf", "rock_smash")
-        and lead_pokemon.level >= repel_level + 5
-    ):
-        # For Keen Eye and Intimidate, we create the new encounter table by
-        # using a different repel level.
-        paths = 2
-        # The pokemon at levels 5 less than the ability user are also blocked,
-        # so it functions as a repel at level - 4.  For example, a level 21
-        # Gyarados will block level 16s, but not level 17s.
-        second_repel_rate, second_species_rate = _calculate_repel_rate_and_species_map(encounters, lead_pokemon.level - 4)
-    elif (not lead_pokemon.is_egg
-          and lead_pokemon.ability.name in ("Pressure", "Vital Spirit", "Hustle")
-          # purely a shortcut since in all mainline games land slots have the
-          # same min and max levels.
-          and encounter_type not in ("land")
-    ):
-        # For Pressure, Vital Spirit, and Hustle, we rewrite the WildEncounter
-        # to force min level to be the max level.
-        paths = 2
-        new_encounters = list()
-        for encounter in encounters:
-            new_encounters.append(
-                WildEncounter(
-                    encounter.species,
-                    encounter.max_level,
-                    encounter.max_level,
-                    encounter.encounter_rate
-                )
-            )
-        second_repel_rate, second_species_rate = _calculate_repel_rate_and_species_map(new_encounters, repel_level)
-    elif (not lead_pokemon.is_egg
-          and lead_pokemon.ability.name in ("Static", "Magnet Pull")):
-        # For Static and Magnet Pull, we rewrite the WildEncounter list with
-        # just the type we're matching.  The encounter_rate is set to 1, since
-        # all new slots are equally weighted, and the helper function will
-        # normalize the rates so we don't have to worry about our comparison
-        # with the base rates.
-        if lead_pokemon.ability.name == "Static":
-            boosted_type = get_type_by_name("Electric")
-        if lead_pokemon.ability.name == "Magnet Pull":
-            boosted_type = get_type_by_name("Steel")
-        new_encounters = list()
-        for encounter in encounters:
-            if encounter.species.has_type(boosted_type):
-                new_encounters.append(
-                    WildEncounter(
-                        encounter.species,
-                        encounter.min_level,
-                        encounter.max_level,
-                        1
-                    )
-                )
-        if len(new_encounters) > 0:
-            paths = 2
-            second_repel_rate, second_species_rate = _calculate_repel_rate_and_species_map(new_encounters, repel_level)
     
     # To calcualte each species effectie encounter rate given both a repel and
     # an affecting ability, consider the system
@@ -2155,23 +2095,83 @@ def calculate_effective_encounters(
     #
     #  A = (1/2)(B + C)
     #  B = base_encounter_rate + base_repel_rate * A
-    #  C = second_encounter_rate + second_repel_rate * A
-    #  A = (1/2)(base_encounter_rate + base_repel_rate * A + second_encounter_rate + second_repel_rate * A)
-    #  A = (1/2)*(base_repel_rate + second_repel_rate)*A + (1/2)*(base_enconter_rate + second_encounter_rate)
-    #  (1 - (1/2)*(base_repel_rate + second_repel_rate))*A = (1/2)*(base_encounter_rate + second_encounter_rate)
-    #  A = [(1/2)*(base_encounter_rate + second_encounter_rate)]/[1 - (1/2)*(base_repel_rate + second_repel_rate)]
-    #  A = (base_encounter_rate + second_encounter_rate)/[2 - (base_repel_rate + second_repel_rate)]
+    #  C = ability_encounter_rate + ability_repel_rate * A
+    #  A = (1/2)(base_encounter_rate + base_repel_rate * A + ability_encounter_rate + ability_repel_rate * A)
+    #  A = (1/2)*(base_repel_rate + ability_repel_rate)*A + (1/2)*(base_enconter_rate + ability_encounter_rate)
+    #  (1 - (1/2)*(base_repel_rate + ability_repel_rate))*A = (1/2)*(base_encounter_rate + ability_encounter_rate)
+    #  A = [(1/2)*(base_encounter_rate + ability_encounter_rate)]/[1 - (1/2)*(base_repel_rate + ability_repel_rate)]
+    #  A = (base_encounter_rate + ability_encounter_rate)/[2 - (base_repel_rate + ability_repel_rate)]
     #
     # Of course, this is the complicated case.  When just repel is active,
     # there is no split, which is why the `paths` variable is tracked.  If just
     # the ability is active, repel rates will be 0, and the formula still works.
+    paths = 1
+    ability_repel_rate = 0
+    ability_species_rate = {}
+    if (not lead_pokemon.is_egg
+        and lead_pokemon.ability.name in ("Keen Eye", "Intimidate")
+        and encounter_type in ("land", "surf", "rock_smash")
+        and lead_pokemon.level >= repel_level + 5
+    ):
+        # For Keen Eye and Intimidate, we create the new encounter table by
+        # using a different repel level.
+        paths = 2
+        ability_repel_rate, ability_species_rate = _calculate_repel_rate_and_species_map(encounters, lead_pokemon.level - 4)
+    elif (not lead_pokemon.is_egg
+          and lead_pokemon.ability.name in ("Pressure", "Vital Spirit", "Hustle")
+          # purely a shortcut since in all mainline games land slots have the
+          # same min and max levels.
+          and encounter_type not in ("land")
+    ):
+        # For Pressure, Vital Spirit, and Hustle, we rewrite the WildEncounter
+        # to force min level to be the max level.
+        paths = 2
+        new_encounters = list()
+        for encounter in encounters:
+            new_encounters.append(
+                WildEncounter(
+                    encounter.species,
+                    encounter.max_level,
+                    encounter.max_level,
+                    encounter.encounter_rate
+                )
+            )
+        ability_repel_rate, ability_species_rate = _calculate_repel_rate_and_species_map(new_encounters, repel_level)
+    elif (not lead_pokemon.is_egg
+          and lead_pokemon.ability.name in ("Static", "Magnet Pull")):
+        # For Static and Magnet Pull, we rewrite the WildEncounter list with
+        # just the type we're matching.  The encounter_rate is set to 1, since
+        # all new slots are equally weighted, and the helper function will
+        # normalize the rates so we don't have to worry about our comparison
+        # with the base rates.
+        if lead_pokemon.ability.name == "Static":
+            boosted_type = get_type_by_name("Electric")
+        if lead_pokemon.ability.name == "Magnet Pull":
+            boosted_type = get_type_by_name("Steel")
+        new_encounters = list()
+        for encounter in encounters:
+            if encounter.species.has_type(boosted_type):
+                new_encounters.append(
+                    WildEncounter(
+                        encounter.species,
+                        encounter.min_level,
+                        encounter.max_level,
+                        1
+                    )
+                )
+        if len(new_encounters) > 0:
+            paths = 2
+            ability_repel_rate, ability_species_rate = _calculate_repel_rate_and_species_map(new_encounters, repel_level)
+    
+    # Finally, calculate the effective rate for each species.
     effective_wild_encounters = list()
+    denominator = paths - (base_repel_rate + ability_repel_rate)
     for index in base_species_rate.keys():
         encounter = base_species_rate[index]
-        second_encounter_rate = 0
-        if index in second_species_rate:
-            second_encounter_rate = second_species_rate[index].encounter_rate
-        rate = (encounter.encounter_rate + second_encounter_rate) / (paths - (base_repel_rate + second_repel_rate))
+        ability_encounter_rate = 0
+        if index in ability_species_rate:
+            ability_encounter_rate = ability_species_rate[index].encounter_rate
+        rate = (encounter.encounter_rate + ability_encounter_rate) / denominator
         effective_wild_encounters.append(EffectiveWildEncounter(encounter.species, encounter.min_level, encounter.max_level, rate))
     
     effective_wild_encounters.sort(reverse=True, key=lambda e: e.encounter_rate)

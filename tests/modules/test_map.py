@@ -152,10 +152,9 @@ class TestEffectiveEncounterRatesForCurrentMap(unittest.TestCase):
     def test_nosepass_repel13(self):
         party_lead = PartyPokemon(regular_lead, 0)
         
-        total = 0.35+(2.4/11)
         want = [
-            modules.map.EffectiveWildEncounter(geodude, 13, 20, 0.35/total),
-            modules.map.EffectiveWildEncounter(nosepass, 13, 20, 2.4/11/total),
+            modules.map.EffectiveWildEncounter(geodude, 13, 20, 154/250),
+            modules.map.EffectiveWildEncounter(nosepass, 13, 20, 48/125),
         ]
         
         got = modules.map.calculate_effective_encounters(granite_cave_rock_smash, 'rock_smash', party_lead, 13)
@@ -184,10 +183,6 @@ class TestEffectiveEncounterRatesForCurrentMap(unittest.TestCase):
         
         got = modules.map.calculate_effective_encounters(granite_cave_rock_smash, 'rock_smash', party_lead, 0)
         
-        # Failing because it has 0.4122137404580153 for Nosepass, 0.5877862595419846 for Geodude
-        # real                   0.3704180064308682 for Nosepass, 0.6295849935691318 for Geodude
-        # trial                  0.348               for N,       0.652 for G (n~1000)
-        # Do I have intimidate level correct?
         self.assertEffectiveEncountersEqual(got, want)
         
     
@@ -277,10 +272,31 @@ class TestEffectiveEncounterRatesForCurrentMap(unittest.TestCase):
     
     # Chinchou for testing static + repel combos on level ranges
     def test_chinchou_static(self):
-        pass
+        party_lead = PartyPokemon(static, 0)
+        
+        want = [
+            modules.map.EffectiveWildEncounter(clamperl, 20, 35, 13/40),
+            modules.map.EffectiveWildEncounter(chinchou, 20, 30, 13/20),
+            modules.map.EffectiveWildEncounter(relicanth, 30, 35, 1/40),
+        ]
+        
+        got = modules.map.calculate_effective_encounters(underwater, 'surf', party_lead, 0)
+        
+        self.assertEffectiveEncountersEqual(got, want)
     
-    def test_chinchou_repel_static(self):
-        pass
+    def test_chinchou_repel26_static(self):
+        party_lead = PartyPokemon(static, 0)
+        
+        want = [
+            modules.map.EffectiveWildEncounter(clamperl, 26, 35, 71/212),
+            modules.map.EffectiveWildEncounter(chinchou, 26, 30, 65/106),
+            modules.map.EffectiveWildEncounter(relicanth, 30, 35, 55/1060),
+        ]
+        
+        got = modules.map.calculate_effective_encounters(underwater, 'surf', party_lead, 26)
+        
+        self.assertEffectiveEncountersEqual(got, want)
+        
     
 
 if __name__ == '__main__':
