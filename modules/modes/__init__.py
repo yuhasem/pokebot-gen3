@@ -14,60 +14,65 @@ _bot_modes: list[Type[BotMode]] = []
 def get_bot_modes() -> list[Type[BotMode]]:
     global _bot_modes
 
-    if len(_bot_modes) == 0:
-        from .berry_blend import BerryBlendMode
-        from .bunny_hop import BunnyHopMode
-        from .daycare import DaycareMode
-        from .ev_train import EVTrainMode
-        from .feebas import FeebasMode
-        from .fishing import FishingMode
-        from .game_corner import GameCornerMode
-        from .item_steal import ItemStealMode
-        from .kecleon import KecleonMode
-        from .level_grind import LevelGrindMode
-        from .nugget_bridge import NuggetBridgeMode
-        from .puzzle_solver import PuzzleSolverMode
-        from .roamer_reencounter import RoamerReencounterMode
-        from .roamer_reset import RoamerResetMode
-        from .rock_smash import RockSmashMode
-        from .safari import SafariMode
-        from .spin import SpinMode
-        from .starters import StartersMode
-        from .sudowoodo import SudowoodoMode
-        from .static_run_away import StaticRunAway
-        from .static_gift_resets import StaticGiftResetsMode
-        from .static_soft_resets import StaticSoftResetsMode
-        from .sweet_scent import SweetScentMode
-
-        _bot_modes = [
-            BerryBlendMode,
-            BunnyHopMode,
-            DaycareMode,
-            EVTrainMode,
-            FeebasMode,
-            FishingMode,
-            GameCornerMode,
-            ItemStealMode,
-            KecleonMode,
-            LevelGrindMode,
-            NuggetBridgeMode,
-            PuzzleSolverMode,
-            RoamerReencounterMode,
-            RoamerResetMode,
-            RockSmashMode,
-            SafariMode,
-            SpinMode,
-            StartersMode,
-            StaticRunAway,
-            StaticGiftResetsMode,
-            StaticSoftResetsMode,
-            SweetScentMode,
-            SudowoodoMode,
-        ]
-
-        for mode in plugin_get_additional_bot_modes():
-            _bot_modes.append(mode)
-
+    try:
+        if len(_bot_modes) == 0:
+            from .berry_blend import BerryBlendMode
+            from .bunny_hop import BunnyHopMode
+            from .daycare import DaycareMode
+            from .ev_train import EVTrainMode
+            from .feebas import FeebasMode
+            from .fishing import FishingMode
+            from .game_corner import GameCornerMode
+            from .item_steal import ItemStealMode
+            from .kecleon import KecleonMode
+            from .level_grind import LevelGrindMode
+            from .nugget_bridge import NuggetBridgeMode
+            from .puzzle_solver import PuzzleSolverMode
+            from .roamer_reencounter import RoamerReencounterMode
+            from .roamer_reset import RoamerResetMode
+            from .rock_smash import RockSmashMode
+            from .safari import SafariMode
+            from .spin import SpinMode
+            from .starters import StartersMode
+            from .sudowoodo import SudowoodoMode
+            from .static_run_away import StaticRunAway
+            from .static_gift_resets import StaticGiftResetsMode
+            from .static_soft_resets import StaticSoftResetsMode
+            from .sweet_scent import SweetScentMode
+            from .frontier_grind import FrontierGrind
+    
+            _bot_modes = [
+                BerryBlendMode,
+                BunnyHopMode,
+                DaycareMode,
+                EVTrainMode,
+                FeebasMode,
+                FishingMode,
+                GameCornerMode,
+                ItemStealMode,
+                KecleonMode,
+                LevelGrindMode,
+                NuggetBridgeMode,
+                PuzzleSolverMode,
+                RoamerReencounterMode,
+                RoamerResetMode,
+                RockSmashMode,
+                SafariMode,
+                SpinMode,
+                StartersMode,
+                StaticRunAway,
+                StaticGiftResetsMode,
+                StaticSoftResetsMode,
+                SweetScentMode,
+                SudowoodoMode,
+                FrontierGrind,
+            ]
+    
+            for mode in plugin_get_additional_bot_modes():
+                _bot_modes.append(mode)
+    except Exception as e:
+        print(e)
+        _ = input('wait')
     return _bot_modes
 
 
